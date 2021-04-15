@@ -6,6 +6,8 @@ A program that separates the raw data out of a list,
 and puts it in all into neatly organized tables
 """
 
+import re
+
 """ Function that will split up a string
 and place each part into an appropiate list """
 def dataSorter(rawData):
@@ -13,11 +15,33 @@ def dataSorter(rawData):
     # list where sorted items will go
     sortedList = []
 
+    #classCode = re.split('[^a-zA-Z]', rawData)
 
-    #Sorts sections of the raw data into separate values in the sortedList
-    sortedList.append(rawData[:5])
-    sortedList.append(rawData[5:])
-    print(sortedList) 
+    # Separates the class code and puts it in the sortedList
+    classCode = rawData[:5]
+    sortedList.append(classCode)
+
+
+    # Finds every 
+    classTitle = re.findall('[^0-9][a-zA-Z]+', rawData[5:])
+    classTitle = classTitle.pop(0)
+    
+
+    # Adds back in spaces
+    classTitle = re.sub("to", " to ", classTitle)
+
+    print(classTitle)
+
+    sortedList.append(classTitle)
+
+    classNumber = re.findall('[^a-zA-Z][0-9]+', rawData[5:])
+    classNumber = classNumber.pop(0)
+    sortedList.append(classNumber)
+
+
+    print(sortedList)
+
+
 
 
 def main():
@@ -35,7 +59,8 @@ def main():
                
             
     testTable = "CS155IntrotoButt21"
+    testTableTwo = "CS111SpecialVictimsUnit69"
 
-    dataSorter(testTable)
+    dataSorter(testTableTwo)
 
 main()
