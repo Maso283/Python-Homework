@@ -1,5 +1,4 @@
 """
-Justin L. Roberts
 April 14th, 2021
 
 A program that separates the raw data out of a list,
